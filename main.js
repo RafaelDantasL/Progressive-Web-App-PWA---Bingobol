@@ -1,21 +1,21 @@
-self.addEventListener('install', (event) => {
+self.addEventListener('install', function(event) {
   event.waitUntil(
-    caches.open('v1').then((cache) => {
+    caches.open('v1').then(function(cache) {
       return cache.addAll([
         '/',
         '/index.html',
         '/styles.css',
         '/script.js',
-        '/icon-192.jpeg',
-        '/icon-512.jpeg',
+        '/images/icons/icon-192x192.jpeg',
+        '/images/icons/icon-512x512.jpeg'
       ]);
     })
   );
 });
 
-self.addEventListener('fetch', (event) => {
+self.addEventListener('fetch', function(event) {
   event.respondWith(
-    caches.match(event.request).then((response) => {
+    caches.match(event.request).then(function(response) {
       return response || fetch(event.request);
     })
   );
