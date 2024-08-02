@@ -2,7 +2,7 @@
 const CACHE_NAME = 'acertos-jb-cache-v1';
 const urlsToCache = [
   '/',
-  'http://www.acertosdiarios.com/',
+  'http://www.acertosjb.com/p/acertosjb-app.html',
   '/styles/main.css',  // Adicione aqui todos os recursos que deseja armazenar em cache
   '/scripts/main.js',  // Adicione aqui todos os recursos que deseja armazenar em cache
   '/icon512_maskable.png',
