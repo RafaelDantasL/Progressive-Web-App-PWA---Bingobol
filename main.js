@@ -2,7 +2,7 @@
 const CACHE_NAME = 'acertos-jb-cache-v1';
 const urlsToCache = [
   '/',
-  'https://bingobol.blogspot.com',
+  'http://www.acertosdiarios.com/',
   '/styles/main.css',  // Adicione aqui todos os recursos que deseja armazenar em cache
   '/scripts/main.js',  // Adicione aqui todos os recursos que deseja armazenar em cache
   '/icon512_maskable.png',
