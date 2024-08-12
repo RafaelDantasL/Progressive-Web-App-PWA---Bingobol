@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Acertos Online - Offline</title>
+    <style>
+        body.acertos-online-body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+        }
+
+        .acertos-online-header {
+            padding: 20px;
+        }
+
+        .acertos-online-header img {
+            vertical-align: middle;
+        }
+
+        .acertos-online-header h1 {
+            display: inline-block;
+            margin: 0;
+            padding-left: 10px;
+            color: green;
+        }
+
+        .acertos-online-error-message {
+            margin-top: 30px;
+            padding: 20px;
+            font-size: 1.2em;
+            line-height: 1.5;
+            text-align: justify;
+            hyphens: auto;
+            background-color: #fff;
+            border-radius: 10px;
+            border: 1px solid #ddd;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .acertos-online-error-message p {
+            margin: 0 0 15px;
+        }
+
+        .acertos-online-error-message a {
+            display: inline-block;
+            margin-top: 15px;
+            padding: 10px 20px;
+            background-color: green;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+
+        .acertos-online-error-message a:hover {
+            background-color: darkgreen;
+        }
+    </style>
+</head>
+<body class="acertos-online-body">
+    <div class="acertos-online-header">
+        <img src="https://rafaeldantasl.github.io/Progressive-Web-App-PWA---Bingobol/icon512_rounded.png" alt="Logo" width="80" height="80">
+        <h1>Acertos Online</h1>
+    </div>
+
+    <div class="acertos-online-error-message">
+        <p>Você está offline no momento. Não foi possível carregar a página solicitada.</p>
+        <p>Por favor, verifique sua conexão com a internet e tente novamente.</p>
+        <a href="javascript:location.reload()">Tentar Novamente</a>
+    </div>
+</body>
+</html>
