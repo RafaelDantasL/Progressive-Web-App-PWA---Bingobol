@@ -6,7 +6,8 @@ const urlsToCache = [
   '/styles/main.css',  // Adicione aqui todos os recursos que deseja armazenar em cache
   '/scripts/main.js',  // Adicione aqui todos os recursos que deseja armazenar em cache
   '/icon512_maskable.png',
-  '/icon512_rounded.png'
+  '/icon512_rounded.png',
+  'https://www.acertosonline.com/feeds/posts/default/'
 ];
 
 // Evento de instalação do service worker
