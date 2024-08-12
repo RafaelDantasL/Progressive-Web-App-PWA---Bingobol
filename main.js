@@ -7,7 +7,7 @@ const urlsToCache = [
   '/scripts/main.js',
   '/icon512_maskable.png',
   '/icon512_rounded.png',
-  '/offline.html'  // Caminho relativo do offline.html que será armazenado no cache
+  '/offline.html'  // Certifique-se de que este caminho seja correto
 ];
 
 // Evento de instalação do service worker
@@ -24,12 +24,13 @@ self.addEventListener('install', event => {
 // Evento de busca
 self.addEventListener('fetch', event => {
   event.respondWith(
-    fetch(event.request).catch(() => {
-      // Se a rede falhar, retorna a página offline do cache
-      return caches.match(event.request).then(response => {
-        return response || caches.match('/offline.html');
-      });
-    })
+    caches.match(event.request)
+      .then(response => {
+        return response || fetch(event.request).catch(() => {
+          // Se a rede falhar, retorna o offline.html do cache
+          return caches.match('/offline.html');
+        });
+      })
   );
 });
 
