@@ -1,6 +1,6 @@
 // Nome do cache e arquivos a serem armazenados
 const CACHE_NAME = 'acertos-Online-cache-v1';
-const OFFLINE_URL = '/offline.html';  // Caminho da página offline personalizada
+const OFFLINE_URL = 'https://rafaeldantasl.github.io/Progressive-Web-App-PWA---Bingobol/offline.html';  // Caminho da página offline personalizada
 const urlsToCache = [
   '/',
   'https://www.acertosonline.com/p/app.html',
