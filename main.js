@@ -1,7 +1,7 @@
 const CACHE_NAME = 'acertos-online-cache-v1';
 const urlsToCache = [
   '/',
-  '/p/app.html',
+  'https://www.acertosonline.com/p/app.html',
   '/styles/main.css',
   '/scripts/main.js',
   '/icon512_maskable.png',
