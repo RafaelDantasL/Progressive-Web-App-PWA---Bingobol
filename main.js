@@ -1,12 +1,12 @@
-// Nome do cache e arquivos a serem armazenados
-const CACHE_NAME = 'acertos-Online-cache-v1';
+const CACHE_NAME = 'acertos-online-cache-v1';
 const urlsToCache = [
   '/',
-  'https://www.acertosonline.com/p/app.html',
-  '/styles/main.css',  // Adicione aqui todos os recursos que deseja armazenar em cache
-  '/scripts/main.js',  // Adicione aqui todos os recursos que deseja armazenar em cache
+  '/p/app.html',
+  '/styles/main.css',
+  '/scripts/main.js',
   '/icon512_maskable.png',
-  '/icon512_rounded.png'
+  '/icon512_rounded.png',
+  'offline.html'
 ];
 
 // Evento de instalação do service worker
@@ -20,20 +20,31 @@ self.addEventListener('install', event => {
   );
 });
 
-// Evento de busca
+// Evento de fetch para interceptar todas as requisições
 self.addEventListener('fetch', event => {
-  event.respondWith(
-    caches.match(event.request)
-      .then(response => {
-        if (response) {
-          return response;  // Retorna do cache se disponível
-        }
-        return fetch(event.request);  // Faz uma requisição à rede se não estiver no cache
+  if (event.request.mode === 'navigate') {
+    event.respondWith(
+      caches.match(event.request).then(cachedResponse => {
+        return cachedResponse || fetch(event.request).then(networkResponse => {
+          return caches.open(CACHE_NAME).then(cache => {
+            cache.put(event.request, networkResponse.clone());
+            return networkResponse;
+          });
+        });
+      }).catch(() => {
+        return caches.match('/offline.html');  // Caso a rede falhe, você pode definir uma página de fallback
       })
-  );
+    );
+  } else {
+    event.respondWith(
+      caches.match(event.request).then(cachedResponse => {
+        return cachedResponse || fetch(event.request);
+      })
+    );
+  }
 });
 
-// Evento de ativação
+// Evento de ativação para limpeza de caches antigos
 self.addEventListener('activate', event => {
   const cacheWhitelist = [CACHE_NAME];
   event.waitUntil(
@@ -41,7 +52,7 @@ self.addEventListener('activate', event => {
       return Promise.all(
         cacheNames.map(cacheName => {
           if (!cacheWhitelist.includes(cacheName)) {
-            return caches.delete(cacheName);  // Remove caches antigos
+            return caches.delete(cacheName);
           }
         })
       );
