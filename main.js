@@ -6,8 +6,7 @@ const urlsToCache = [
   '/styles/main.css',  // Adicione aqui todos os recursos que deseja armazenar em cache
   '/scripts/main.js',  // Adicione aqui todos os recursos que deseja armazenar em cache
   '/icon512_maskable.png',
-  '/icon512_rounded.png',
-  '/offline.html'  // Adicione a página offline ao cache
+  '/icon512_rounded.png'
 ];
 
 // Evento de instalação do service worker
@@ -23,36 +22,15 @@ self.addEventListener('install', event => {
 
 // Evento de busca
 self.addEventListener('fetch', event => {
-  const url = new URL(event.request.url);
-
-  // Verifica se a requisição é para uma URL do seu domínio
-  if (url.origin === location.origin) {
-    // Manipula a navegação interna para garantir que o PWA a trate como interna
-    event.respondWith(
-      caches.match(event.request)
-        .then(response => {
-          if (response) {
-            return response;  // Retorna do cache se disponível
-          }
-          return fetch(event.request)
-            .then(networkResponse => {
-              // Armazena no cache a nova requisição da rede
-              return caches.open(CACHE_NAME).then(cache => {
-                cache.put(event.request, networkResponse.clone());
-                return networkResponse;
-              });
-            });
-        }).catch(() => {
-          // Em caso de erro (offline), retorna a página offline
-          return caches.match('/offline.html');
-        })
-    );
-  } else {
-    // Para requisições externas ao domínio
-    event.respondWith(
-      fetch(event.request).catch(() => caches.match('/offline.html'))
-    );
-  }
+  event.respondWith(
+    caches.match(event.request)
+      .then(response => {
+        if (response) {
+          return response;  // Retorna do cache se disponível
+        }
+        return fetch(event.request);  // Faz uma requisição à rede se não estiver no cache
+      })
+  );
 });
 
 // Evento de ativação
