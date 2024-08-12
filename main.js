@@ -3,11 +3,11 @@ const CACHE_NAME = 'acertos-online-cache-v1';
 const urlsToCache = [
   '/',
   'https://www.acertosonline.com/p/app.html',
-  '/styles/main.css',  // Adicione aqui todos os recursos que deseja armazenar em cache
-  '/scripts/main.js',  // Adicione aqui todos os recursos que deseja armazenar em cache
+  '/styles/main.css',
+  '/scripts/main.js',
   '/icon512_maskable.png',
   '/icon512_rounded.png',
-  '/offline.html'  // Adicione a página offline ao cache
+  'https://rafaeldantasl.github.io/Progressive-Web-App-PWA---Bingobol/offline.html'  // URL completa do offline.html
 ];
 
 // Evento de instalação do service worker
@@ -31,7 +31,7 @@ self.addEventListener('fetch', event => {
         }
         return fetch(event.request).catch(() => {
           // Em caso de falha na rede, retorna a página offline
-          return caches.match('/offline.html');
+          return caches.match('https://rafaeldantasl.github.io/Progressive-Web-App-PWA---Bingobol/offline.html');
         });
       })
   );
