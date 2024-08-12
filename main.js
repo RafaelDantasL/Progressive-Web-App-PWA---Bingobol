@@ -1,12 +1,13 @@
 // Nome do cache e arquivos a serem armazenados
-const CACHE_NAME = 'acertos-Online-cache-v1';
+const CACHE_NAME = 'acertos-online-cache-v1';
 const urlsToCache = [
   '/',
   'https://www.acertosonline.com/p/app.html',
   '/styles/main.css',  // Adicione aqui todos os recursos que deseja armazenar em cache
   '/scripts/main.js',  // Adicione aqui todos os recursos que deseja armazenar em cache
   '/icon512_maskable.png',
-  '/icon512_rounded.png'
+  '/icon512_rounded.png',
+  '/offline.html'  // Adicione a página offline ao cache
 ];
 
 // Evento de instalação do service worker
@@ -28,7 +29,10 @@ self.addEventListener('fetch', event => {
         if (response) {
           return response;  // Retorna do cache se disponível
         }
-        return fetch(event.request);  // Faz uma requisição à rede se não estiver no cache
+        return fetch(event.request).catch(() => {
+          // Em caso de falha na rede, retorna a página offline
+          return caches.match('/offline.html');
+        });
       })
   );
 });
