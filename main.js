@@ -7,7 +7,7 @@ const urlsToCache = [
   '/scripts/main.js',
   '/icon512_maskable.png',
   '/icon512_rounded.png',
-  'https://rafaeldantasl.github.io/Progressive-Web-App-PWA---Bingobol/offline.html'  // URL completa do offline.html
+  '/offline.html'  // Caminho relativo do offline.html que será armazenado no cache
 ];
 
 // Evento de instalação do service worker
@@ -24,16 +24,12 @@ self.addEventListener('install', event => {
 // Evento de busca
 self.addEventListener('fetch', event => {
   event.respondWith(
-    caches.match(event.request)
-      .then(response => {
-        if (response) {
-          return response;  // Retorna do cache se disponível
-        }
-        return fetch(event.request).catch(() => {
-          // Em caso de falha na rede, retorna a página offline
-          return caches.match('https://rafaeldantasl.github.io/Progressive-Web-App-PWA---Bingobol/offline.html');
-        });
-      })
+    fetch(event.request).catch(() => {
+      // Se a rede falhar, retorna a página offline do cache
+      return caches.match(event.request).then(response => {
+        return response || caches.match('/offline.html');
+      });
+    })
   );
 });
 
