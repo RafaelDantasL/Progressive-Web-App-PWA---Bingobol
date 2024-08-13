@@ -22,16 +22,26 @@ self.addEventListener('install', event => {
 
 // Evento de busca
 self.addEventListener('fetch', event => {
-  event.respondWith(
-    caches.match(event.request)
-      .then(response => {
-        if (response) {
-          return response;  // Retorna do cache se disponível
-        }
-        return fetch(event.request);  // Faz uma requisição à rede se não estiver no cache
-      })
-  );
+    if (event.request.mode === 'navigate') {
+        event.respondWith(
+            caches.match(event.request)
+                .then(response => {
+                    return response || fetch(event.request);
+                })
+        );
+    } else {
+        event.respondWith(
+            caches.match(event.request)
+                .then(response => {
+                    if (response) {
+                        return response;  // Retorna do cache se disponível
+                    }
+                    return fetch(event.request);  // Faz uma requisição à rede se não estiver no cache
+                })
+        );
+    }
 });
+
 
 // Evento de ativação
 self.addEventListener('activate', event => {
