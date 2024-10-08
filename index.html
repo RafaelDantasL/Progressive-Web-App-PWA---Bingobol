@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>App Responsivo</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Meu App</h1>
+    </header>
+
+    <main>
+        <section>
+            <h2>Selecione um nome:</h2>
+            <select id="dropdownNomes">
+                <option value="" disabled selected>Escolha um nome</option>
+            </select>
+            <div id="resultados">
+                <!-- As tabelas serão inseridas dinamicamente aqui -->
+            </div>
+        </section>
+    </main>
+
+    <!-- Barra inferior com ícones -->
+    <footer>
+        <nav class="bottom-nav">
+            <a href="#" class="nav-item">
+                <img src="resultado.png" alt="Resultado">
+                <span>Resultado</span>
+            </a>
+            <a href="#" class="nav-item">
+                <img src="palpite.png" alt="Palpite">
+                <span>Palpite</span>
+            </a>
+            <a href="#" class="nav-item">
+                <img src="jogar.png" alt="Jogar">
+                <span>Jogar</span>
+            </a>
+            <a href="#" class="nav-item">
+                <img src="compartilhar.png" alt="Compartilhar">
+                <span>Compartilhar</span>
+            </a>
+        </nav>
+    </footer>
+
+    <script src="resultados.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
