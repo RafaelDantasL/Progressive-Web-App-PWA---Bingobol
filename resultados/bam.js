@@ -1,4 +1,4 @@
-const bam = `{
+const bam = '{
   "MALUCA - Bahia": [
     {
       "titulo": "10h - MALUCA - Resultado do dia 07/10/2024 (Segunda-feira)",
@@ -285,4 +285,4 @@ const bam = `{
       ]
     }
   ]
-}`;
+}';
