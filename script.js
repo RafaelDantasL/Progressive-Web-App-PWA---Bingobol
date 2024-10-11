@@ -248,10 +248,11 @@ document.addEventListener('DOMContentLoaded', function () {
                 url: window.location.href
             }).then(() => {
                 console.log('Compartilhamento bem-sucedido');
-                // Define o status de compartilhamento no localStorage
+                // Define o status de compartilhamento no localStorage somente após sucesso
                 localStorage.setItem(localStorageSharedKey, 'true');
             }).catch((error) => {
-                console.log('Erro ao compartilhar:', error);
+                console.log('Compartilhamento cancelado ou erro:', error);
+                // Não define o status de compartilhamento se o compartilhamento foi cancelado ou falhou
             });
         } else {
             alert('Compartilhamento não suportado neste navegador.');
