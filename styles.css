@@ -18,8 +18,11 @@ header {
 }
 
 main {
-    flex: 1;
     padding: 20px;
+}
+
+.hidden {
+    display: none;
 }
 
 footer {
@@ -47,6 +50,13 @@ footer {
     align-items: center;
     text-decoration: none;
     color: white;
+    cursor: pointer; /* Indica que o item é clicável */
+    transition: background-color 0.3s;
+}
+
+.nav-item:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
 }
 
 .nav-item img {
@@ -59,7 +69,11 @@ footer {
     font-size: 12px;
 }
 
-/* Responsividade para dispositivos móveis */
+.nav-item.active {
+    background-color: #555;
+    border-radius: 10px;
+}
+
 @media (max-width: 600px) {
     .nav-item img {
         width: 20px;
@@ -70,3 +84,211 @@ footer {
         font-size: 10px;
     }
 }
+
+/* Estilos para as tabelas */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+th, td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+th {
+    background-color: #f2f2f2;
+}
+
+tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+/* Estilos para o menu vertical de loterias */
+#menuLoterias {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.menu-loteria-item {
+    padding: 10px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-align: center;
+    transition: background-color 0.3s;
+}
+
+.menu-loteria-item:hover {
+    background-color: #45a049;
+}
+
+/* Estilos para a seção 'Selecionar Loteria' */
+#selecionarNome {
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+#selecionarNome h2 {
+    margin-bottom: 10px;
+}
+
+/* Estilo para os dropdowns */
+select {
+    padding: 8px;
+    margin-top: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    width: 100%;
+    max-width: 300px;
+    display: block;
+}
+
+/* Estilização do botão "Mostrar palpite" */
+#mostrarPalpiteBtn {
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 20px 0;
+    transition: background-color 0.3s;
+}
+
+#mostrarPalpiteBtn:hover {
+    background-color: #45a049;
+}
+
+/* Estilos para o link "Selecionar a loteria" */
+.button-link {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 8px 12px;
+    background-color: #555;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.button-link:hover {
+    background-color: #444;
+}
+
+/* Estilos para os cabeçalhos das seções com link */
+.header-exibir,
+.header-palpite {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header-exibir h2,
+.header-palpite h2 {
+    margin-bottom: 10px;
+}
+
+/* Estilos para a tabela de palpites */
+#palpiteConteudo table {
+    margin-bottom: 20px;
+}
+
+/* Estilos para as frases de palpites */
+#frasesPalpites p {
+    margin-bottom: 10px;
+    padding: 10px;
+    background-color: #f2f2f2;
+    border-radius: 5px;
+}
+
+/* Estilos para exibir o palpite aleatório */
+.palpite-aleatorio {
+    margin-bottom: 20px;
+    padding: 10px;
+    background-color: #e7f3fe;
+    border-left: 6px solid #2196F3;
+    border-radius: 5px;
+}
+
+/* Estilos para o efeito de carregamento */
+.loader {
+    border: 8px solid #f3f3f3; /* Cor de fundo */
+    border-top: 8px solid #4CAF50; /* Cor da barra de progresso */
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    animation: spin 1s linear infinite;
+    margin: 20px auto; /* Centraliza o loader */
+}
+
+/* Animação para o loader */
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Seção 'Jogar' com iframe em tela cheia */
+#modoJogar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 9999; /* Garante que a iframe sobreponha todo o conteúdo */
+    display: none; /* Inicialmente, a seção estará oculta */
+    pointer-events: none; /* Impede que o fundo capture cliques, o iframe vai capturar */
+}
+
+#jogarIframe {
+    width: 100%;
+    height: 100%;
+    border: none; /* Remove borda da iframe */
+    pointer-events: auto; /* Garante que o iframe receba cliques normalmente */
+}
+
+/* Estilo para o botão de fechar iframe - 100% redondo e com sombra */
+.close-iframe {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    width: 50px;
+    height: 50px;
+    font-size: 30px;
+    color: white;
+    background-color: rgba(0, 0, 0, 0.7);
+    border-radius: 50%; /* Torna o botão completamente redondo */
+    padding: 10px;
+    cursor: pointer;
+    z-index: 10000; /* Mantém o botão sobreposto ao iframe */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.5); /* Adiciona sombra */
+    transition: background-color 0.3s, box-shadow 0.3s;
+    pointer-events: auto; /* Garante que o botão 'X' receba cliques */
+    touch-action: manipulation; /* Ajuda em dispositivos móveis para evitar delay de clique */
+}
+
+.close-iframe:hover {
+    background-color: rgba(255, 0, 0, 0.8);
+    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.7); /* Sombra aumenta no hover */
+}
+
+/* Remove qualquer interferência de eventos de clique do #modoJogar */
+#modoJogar {
+    pointer-events: none;
+}
+
+/* Ajuste para garantir que apenas o botão 'X' e o iframe recebam cliques */
+#modoJogar > .close-iframe {
+    pointer-events: auto; /* Torna o botão 'X' clicável */
+}
+

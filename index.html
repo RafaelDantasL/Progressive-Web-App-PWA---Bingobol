@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,40 +12,95 @@
     </header>
 
     <main>
-        <section>
-            <h2>Selecione um nome:</h2>
-            <select id="dropdownNomes">
-                <option value="" disabled selected>Escolha um nome</option>
-            </select>
-            <div id="resultados">
-                <!-- As tabelas serão inseridas dinamicamente aqui -->
+        <!-- Tela de Seleção de Loteria -->
+        <section id="selecionarNome" class="hidden">
+            <h2>Selecione uma Loteria:</h2>
+            <div id="menuLoterias">
+                <!-- Loterias serão inseridas dinamicamente aqui como botões -->
             </div>
         </section>
+
+        <!-- Tela de Exibição de Resultados -->
+        <section id="exibirResultado" class="hidden">
+            <div class="header-exibir">
+                <h2 id="nomeSelecionado"></h2>
+            </div>
+            <div>
+                <label for="dropdownTitulos">Selecione um título:</label>
+                <select id="dropdownTitulos" class="hidden">
+                    <!-- Títulos serão inseridos dinamicamente aqui -->
+                </select>
+            </div>
+            <div id="resultados">
+                <!-- Tabela de dados será inserida dinamicamente aqui -->
+            </div>
+            <!-- Botão "Selecionar loteria" abaixo do conteúdo -->
+            <a href="#" id="selecionarLoteriaLink" class="button-link">Selecionar a loteria</a>
+        </section>
+
+        <!-- Tela de Palpite -->
+        <section id="modoPalpite" class="hidden">
+            <div class="header-palpite">
+                <h2>Gerar Palpite</h2>
+            </div>
+            <div>
+                <label for="dropdownPalpite">Selecione uma Loteria:</label>
+                <select id="dropdownPalpite">
+                    <option value="" disabled selected>Escolha uma loteria</option>
+                    <!-- Loterias serão inseridas dinamicamente aqui -->
+                </select>
+            </div>
+            <!-- Botão "Mostrar palpite" -->
+            <button id="mostrarPalpiteBtn">Mostrar palpite</button>
+            <div id="palpiteConteudo">
+                <!-- Área para exibir o efeito de carregamento e os palpites -->
+            </div>
+            <div id="frasesPalpites">
+                <!-- Frases serão inseridas dinamicamente aqui -->
+            </div>
+        </section>
+
+        <!-- Tela Jogar -->
+
+            <!-- Ícone de fechar -->
+            <div id="fecharIframe" class="close-iframe hidden">&times;</div>
+
+<section id="modoJogar" class="hidden">
+    <!-- A iframe para carregar o site externo, inicialmente oculta -->
+    <iframe id="jogarIframe" src="" frameborder="0" allow="clipboard-read; clipboard-write" allowfullscreen sandbox="allow-scripts allow-same-origin"></iframe>
+
+
+
+</section>
+
+
     </main>
 
     <!-- Barra inferior com ícones -->
     <footer>
         <nav class="bottom-nav">
-            <a href="#" class="nav-item">
+            <a href="#" class="nav-item" id="resultadoIcon">
                 <img src="resultado.png" alt="Resultado">
                 <span>Resultado</span>
             </a>
-            <a href="#" class="nav-item">
+            <a href="#" class="nav-item" id="palpiteIcon">
                 <img src="palpite.png" alt="Palpite">
                 <span>Palpite</span>
             </a>
-            <a href="#" class="nav-item">
+            <a href="#" class="nav-item" id="jogarIcon">
                 <img src="jogar.png" alt="Jogar">
                 <span>Jogar</span>
             </a>
-            <a href="#" class="nav-item">
+            <a href="#" class="nav-item" id="compartilharIcon">
                 <img src="compartilhar.png" alt="Compartilhar">
                 <span>Compartilhar</span>
             </a>
         </nav>
     </footer>
 
+    <!-- Inclusão dos scripts JavaScript -->
     <script src="resultados.js"></script>
+    <script src="palpites.js"></script>
     <script src="script.js"></script>
 </body>
 </html>
