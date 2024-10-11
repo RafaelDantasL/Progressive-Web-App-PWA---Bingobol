@@ -244,14 +244,12 @@ select {
     height: 100vh;
     z-index: 9999; /* Garante que a iframe sobreponha todo o conteúdo */
     display: none; /* Inicialmente, a seção estará oculta */
-    pointer-events: none; /* Impede que o fundo capture cliques, o iframe vai capturar */
 }
 
 #jogarIframe {
     width: 100%;
     height: 100%;
     border: none; /* Remove borda da iframe */
-    pointer-events: auto; /* Garante que o iframe receba cliques normalmente */
 }
 
 /* Estilo para o botão de fechar iframe - 100% redondo e com sombra */
@@ -267,28 +265,15 @@ select {
     border-radius: 50%; /* Torna o botão completamente redondo */
     padding: 10px;
     cursor: pointer;
-    z-index: 10000; /* Mantém o botão sobreposto ao iframe */
+    z-index: 10000; /* Sobrepõe o iframe */
     display: flex;
     justify-content: center;
     align-items: center;
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.5); /* Adiciona sombra */
     transition: background-color 0.3s, box-shadow 0.3s;
-    pointer-events: auto; /* Garante que o botão 'X' receba cliques */
-    touch-action: manipulation; /* Ajuda em dispositivos móveis para evitar delay de clique */
 }
 
 .close-iframe:hover {
     background-color: rgba(255, 0, 0, 0.8);
     box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.7); /* Sombra aumenta no hover */
 }
-
-/* Remove qualquer interferência de eventos de clique do #modoJogar */
-#modoJogar {
-    pointer-events: none;
-}
-
-/* Ajuste para garantir que apenas o botão 'X' e o iframe recebam cliques */
-#modoJogar > .close-iframe {
-    pointer-events: auto; /* Torna o botão 'X' clicável */
-}
-
