@@ -26,6 +26,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const localStorageModeKey = 'appMode';
     const localStorageNameKey = 'lastSelectedName';
     const localStorageTitleKey = 'lastSelectedTitle';
+    const localStorageSharedKey = 'hasShared'; // Nova chave para status de compartilhamento
 
     // Estado atual
     let currentMode = 'Resultado'; // Modo padrão
@@ -219,10 +220,10 @@ document.addEventListener('DOMContentLoaded', function () {
         fecharIframeBtn.classList.remove('hidden'); // Mostra o botão de fechar
     });
 
-// Função para lidar com o clique no botão 'X' (fechar iframe)
-fecharIframeBtn.addEventListener('click', function () {
-    window.location.reload(); // Recarrega a página completamente
-});
+    // Função para lidar com o clique no botão 'X' (fechar iframe)
+    fecharIframeBtn.addEventListener('click', function () {
+        window.location.reload(); // Recarrega a página completamente
+    });
 
     // Função para lidar com o clique no ícone 'Compartilhar'
     compartilharIcon.addEventListener('click', function (event) {
@@ -243,10 +244,12 @@ fecharIframeBtn.addEventListener('click', function () {
         if (navigator.share) {
             navigator.share({
                 title: document.title,
-                text: 'Confira esta página incrível!',
+                text: 'Confira esta página incrível de resultados e palpites de loteria!',
                 url: window.location.href
             }).then(() => {
                 console.log('Compartilhamento bem-sucedido');
+                // Define o status de compartilhamento no localStorage
+                localStorage.setItem(localStorageSharedKey, 'true');
             }).catch((error) => {
                 console.log('Erro ao compartilhar:', error);
             });
@@ -367,8 +370,16 @@ fecharIframeBtn.addEventListener('click', function () {
             return;
         }
 
-        // Exibir os palpites com efeito de carregamento
-        exibirPalpitesComLoading(selectedName);
+        // Verifica se a página foi compartilhada
+        const hasShared = localStorage.getItem(localStorageSharedKey) === 'true';
+        if (hasShared) {
+            // Exibir os palpites com efeito de carregamento
+            exibirPalpitesComLoading(selectedName);
+            // Resetar o status de compartilhamento
+            localStorage.setItem(localStorageSharedKey, 'false');
+        } else {
+            alert("Por favor, compartilhe a página antes de mostrar os palpites.");
+        }
     });
 
     // Função para lidar com o clique no botão 'Selecionar loteria' na seção Exibir Resultados
