@@ -10,13 +10,89 @@ body, html {
     font-family: Arial, sans-serif;
 }
 
+/* Cabeçalho */
 header {
     background-color: #4CAF50;
     color: white;
     padding: 15px;
-    text-align: center;
+    position: relative; /* Para posicionamento do menu expandido */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Adiciona sombra */
 }
 
+/* Container do Cabeçalho */
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Título do App */
+header h1 {
+    margin: 0;
+    font-size: 1.5em;
+}
+
+/* Botão de Menu Hambúrguer */
+.hamburger {
+    font-size: 1.5em;
+    background: none;
+    border: none;
+    color: white;
+    cursor: pointer;
+    display: none; /* Inicialmente oculto em telas maiores */
+}
+
+/* Menu Expandido */
+.expand-menu {
+    background-color: #4CAF50;
+    overflow: hidden;
+    transition: max-height 0.3s ease-out;
+    max-height: 0; /* Oculto inicialmente */
+}
+
+.expand-menu.active {
+    max-height: 500px; /* Ajuste conforme necessário */
+}
+
+.expand-menu ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.expand-menu li {
+    border-top: 1px solid #ffffff;
+}
+
+.expand-menu li:first-child {
+    border-top: none;
+}
+
+.expand-menu a {
+    color: white;
+    padding: 14px 20px;
+    text-decoration: none;
+    display: block;
+    transition: background-color 0.3s;
+}
+
+.expand-menu a:hover {
+    background-color: #45a049;
+}
+
+/* Responsividade do Botão Hambúrguer */
+@media screen and (max-width: 768px) {
+    .hamburger {
+        display: block; /* Mostra o botão em telas menores */
+    }
+
+    /* Ajuste o max-height do menu expandido para telas menores, se necessário */
+    .expand-menu.active {
+        max-height: 600px; /* Pode ser ajustado */
+    }
+}
+
+/* Conteúdo Principal */
 main {
     padding: 20px;
 }
@@ -25,6 +101,7 @@ main {
     display: none;
 }
 
+/* Footer */
 footer {
     position: fixed;
     bottom: 0;
@@ -276,4 +353,56 @@ select {
 .close-iframe:hover {
     background-color: rgba(255, 0, 0, 0.8);
     box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.7); /* Sombra aumenta no hover */
+}
+
+/* Frase personalizada */
+.frase-palpite {
+    font-size: 1.2em;
+    margin-bottom: 10px;
+    color: #333;
+    text-align: center; /* Centraliza a frase */
+}
+
+/* Novas Seções de Conteúdo */
+#comoFunciona,
+#politicasPrivacidade,
+#termosServico,
+#sobre {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+#comoFunciona h2,
+#politicasPrivacidade h2,
+#termosServico h2,
+#sobre h2 {
+    margin-bottom: 10px;
+}
+
+#comoFunciona p,
+#politicasPrivacidade p,
+#termosServico p,
+#sobre p {
+    font-size: 1em;
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+/* Botão de Instalação do App */
+#installButton {
+    position: fixed;
+    bottom: 80px; /* Posicione acima do footer */
+    right: 20px;
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    z-index: 1000;
+    transition: background-color 0.3s;
+}
+
+#installButton:hover {
+    background-color: #45a049;
 }

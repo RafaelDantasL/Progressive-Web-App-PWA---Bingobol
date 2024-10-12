@@ -4,6 +4,10 @@ document.addEventListener('DOMContentLoaded', function () {
     const palpiteIcon = document.getElementById('palpiteIcon');
     const jogarIcon = document.getElementById('jogarIcon');
     const compartilharIcon = document.getElementById('compartilharIcon');
+    const hamburgerMenu = document.getElementById('hamburgerMenu');
+    const expandMenu = document.getElementById('expandMenu');
+    const contatoLink = document.getElementById('contatoLink');
+    const instalarAppLink = document.getElementById('instalarAppLink');
 
     const selecionarNomeSection = document.getElementById('selecionarNome');
     const exibirResultadoSection = document.getElementById('exibirResultado');
@@ -20,7 +24,12 @@ document.addEventListener('DOMContentLoaded', function () {
     const palpiteConteudoDiv = document.getElementById('palpiteConteudo');
     const frasesPalpitesDiv = document.getElementById('frasesPalpites');
     const selecionarLoteriaLink = document.getElementById('selecionarLoteriaLink');
-    const jogarIframe = document.getElementById('jogarIframe');
+
+    // Novas Seções de Conteúdo
+    const comoFuncionaSection = document.getElementById('comoFunciona');
+    const politicasPrivacidadeSection = document.getElementById('politicasPrivacidade');
+    const termosServicoSection = document.getElementById('termosServico');
+    const sobreSection = document.getElementById('sobre');
 
     // Chaves do localStorage
     const localStorageModeKey = 'appMode';
@@ -30,6 +39,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Estado atual
     let currentMode = 'Resultado'; // Modo padrão
+    let deferredPrompt; // Para armazenar o evento beforeinstallprompt
 
     // Função para esconder todas as seções
     function hideAllSections() {
@@ -37,6 +47,10 @@ document.addEventListener('DOMContentLoaded', function () {
         exibirResultadoSection.classList.add('hidden');
         modoPalpiteSection.classList.add('hidden');
         modoJogarSection.classList.add('hidden');
+        comoFuncionaSection.classList.add('hidden');
+        politicasPrivacidadeSection.classList.add('hidden');
+        termosServicoSection.classList.add('hidden');
+        sobreSection.classList.add('hidden');
         fecharIframeBtn.classList.add('hidden'); // Esconde o botão de fechar
     }
 
@@ -318,6 +332,12 @@ document.addEventListener('DOMContentLoaded', function () {
         setTimeout(() => {
             loader.remove();
 
+            // Cria e adiciona a frase personalizada
+            const fraseP = document.createElement('p');
+            fraseP.textContent = `Jogue M/MC/C/D do 1º ao 10º na loteria ${nome}.`;
+            fraseP.classList.add('frase-palpite'); // Opcional: Adicione uma classe para estilização
+            palpiteConteudoDiv.appendChild(fraseP);
+
             const dadosPalpite = palpites[nome];
             if (!dadosPalpite) {
                 palpiteConteudoDiv.textContent = 'Dados indisponíveis.';
@@ -393,6 +413,113 @@ document.addEventListener('DOMContentLoaded', function () {
     function showSelecaoLoteria() {
         setActiveIcon(resultadoIcon);
         showSection(selecionarNomeSection);
+    }
+
+    // Função para lidar com o clique no ícone de menu hambúrguer
+    hamburgerMenu.addEventListener('click', function () {
+        expandMenu.classList.toggle('hidden');
+        expandMenu.classList.toggle('active'); // Para animação CSS
+    });
+
+    // Função para lidar com os cliques nos itens do menu expandido
+    expandMenu.addEventListener('click', function (event) {
+        if (event.target.tagName === 'A') {
+            const sectionId = event.target.getAttribute('data-section');
+            if (sectionId) {
+                const section = document.getElementById(sectionId);
+                if (section) {
+                    showSection(section);
+                }
+            }
+            // Fechar o menu após clicar
+            expandMenu.classList.add('hidden');
+            expandMenu.classList.remove('active');
+        }
+    });
+
+    // Função para lidar com o clique no item 'Contato'
+    contatoLink.addEventListener('click', function (event) {
+        event.preventDefault();
+        window.open('https://www.instagram.com/acertosonline/', '_blank');
+        // Fechar o menu após clicar
+        expandMenu.classList.add('hidden');
+        expandMenu.classList.remove('active');
+    });
+
+    // Função para lidar com o clique no item 'Instale o App no seu celular'
+    instalarAppLink.addEventListener('click', function (event) {
+        event.preventDefault();
+        instalarApp(); // Função para instalar o PWA
+        // Fechar o menu após clicar
+        expandMenu.classList.add('hidden');
+        expandMenu.classList.remove('active');
+    });
+
+    // Função para instalar o App (PWA)
+    function instalarApp() {
+        if (deferredPrompt) {
+            deferredPrompt.prompt();
+            deferredPrompt.userChoice.then((choiceResult) => {
+                if (choiceResult.outcome === 'accepted') {
+                    console.log('Usuário aceitou a instalação do App');
+                } else {
+                    console.log('Usuário recusou a instalação do App');
+                }
+                deferredPrompt = null;
+            });
+        } else {
+            // Fallback para navegadores que não suportam o evento
+            alert('A funcionalidade de instalação não está disponível no seu navegador.');
+        }
+    }
+
+    // Registro do Service Worker para PWA
+    if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+            navigator.serviceWorker.register('/service-worker.js')
+                .then(registration => {
+                    console.log('ServiceWorker registrado com sucesso:', registration.scope);
+                })
+                .catch(error => {
+                    console.log('Falha ao registrar ServiceWorker:', error);
+                });
+        });
+    }
+
+    // Captura o evento beforeinstallprompt
+    window.addEventListener('beforeinstallprompt', (e) => {
+        e.preventDefault();
+        deferredPrompt = e;
+        // Opcional: Mostrar um botão para instalar o PWA
+        // Como estamos usando o menu, a instalação será acionada pelo item do menu
+    });
+
+    // Função para abrir opções de compartilhamento
+    function abrirOpcoesCompartilhamento() {
+        if (navigator.share) {
+            navigator.share({
+                title: document.title,
+                text: 'Confira esta página incrível de resultados e palpites de loteria!',
+                url: window.location.href
+            }).then(() => {
+                console.log('Compartilhamento bem-sucedido');
+                // Define o status de compartilhamento no localStorage somente após sucesso
+                localStorage.setItem(localStorageSharedKey, 'true');
+            }).catch((error) => {
+                console.log('Compartilhamento cancelado ou erro:', error);
+                // Não define o status de compartilhamento se o compartilhamento foi cancelado ou falhou
+            });
+        } else {
+            alert('Compartilhamento não suportado neste navegador.');
+        }
+    }
+
+    // Função para definir o ícone ativo
+    function setActiveIcon(activeIcon) {
+        [resultadoIcon, palpiteIcon, jogarIcon].forEach(icon => {
+            icon.classList.remove('active');
+        });
+        activeIcon.classList.add('active');
     }
 
     // Função de inicialização
