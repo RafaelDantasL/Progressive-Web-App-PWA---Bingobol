@@ -95,6 +95,7 @@ header h1 {
 /* Conteúdo Principal */
 main {
     padding: 20px;
+    padding-bottom: 80px; /* Adiciona espaçamento para evitar sobreposição pelo footer */
 }
 
 .hidden {
@@ -360,7 +361,7 @@ select {
     font-size: 1.2em;
     margin-bottom: 10px;
     color: #333;
-    text-align: center; /* Centraliza a frase */
+    text-align: left; /* Alinha a frase à direita */
 }
 
 /* Novas Seções de Conteúdo */
@@ -386,23 +387,4 @@ select {
     font-size: 1em;
     line-height: 1.6;
     margin-bottom: 20px;
-}
-
-/* Botão de Instalação do App */
-#installButton {
-    position: fixed;
-    bottom: 80px; /* Posicione acima do footer */
-    right: 20px;
-    padding: 10px 20px;
-    background-color: #4CAF50;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    z-index: 1000;
-    transition: background-color 0.3s;
-}
-
-#installButton:hover {
-    background-color: #45a049;
 }
