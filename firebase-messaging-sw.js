@@ -2,13 +2,13 @@ importScripts('https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js');
 importScripts('https://www.gstatic.com/firebasejs/10.14.1/firebase-messaging.js');
 
 const firebaseConfig = {
-  apiKey: "SUA_API_KEY",
-  authDomain: "SUA_AUTH_DOMAIN",
-  projectId: "SEU_PROJECT_ID",
-  storageBucket: "SEU_STORAGE_BUCKET",
-  messagingSenderId: "SEU_MESSAGING_SENDER_ID",
-  appId: "SEU_APP_ID",
-  measurementId: "SEU_MEASUREMENT_ID"
+  apiKey: "AIzaSyB4XSOOTIxbJvIpfd96MsyJZDW2aNi_uPc",
+  authDomain: "loto-hack.firebaseapp.com",
+  projectId: "loto-hack",
+  storageBucket: "loto-hack.appspot.com",
+  messagingSenderId: "138353732568",
+  appId: "1:138353732568:web:71f27a582f25cd544aa0ad",
+  measurementId: "G-P53RKCKPQ5"
 };
 
 firebase.initializeApp(firebaseConfig);

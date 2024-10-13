@@ -46,7 +46,7 @@ enableNotificationsButton.addEventListener('click', () => {
       console.log('Notificação permitida!');
 
       // Obtém o token de registro
-      getToken(messaging, { vapidKey: 'SUA_VAPID_KEY' })
+      getToken(messaging, { vapidKey: 'BDm4dAIMcu31t5ChnxwBpDu5iT8qSSvwIb332nSt6NwQexeQVNinuo68eBTilpAWZGnHKyKyZWKOdmMtkSq7__s' })
         .then((currentToken) => {
           if (currentToken) {
             console.log('Token de registro: ', currentToken);
