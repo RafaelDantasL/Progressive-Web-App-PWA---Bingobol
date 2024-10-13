@@ -32,6 +32,24 @@ header h1 {
     font-size: 1.5em;
 }
 
+/* Agrupa o ícone e o título alinhando à esquerda com espaçamento */
+.logo-title {
+    display: flex;
+    align-items: center; /* Garante que o ícone e o título fiquem alinhados verticalmente */
+}
+
+.logo-title h1 {
+    margin-left: 10px; /* Espaçamento entre o ícone e o título */
+    font-size: 1.5em; /* Tamanho do título */
+}
+
+/* Estilo para o ícone ao lado do título */
+.logo-icon {
+    width: 40px; /* Tamanho do ícone */
+    height: 40px;
+    vertical-align: middle;
+}
+
 /* Botão de Menu Hambúrguer */
 .hamburger {
     font-size: 1.5em;
@@ -358,7 +376,7 @@ select {
 
 /* Frase personalizada */
 .frase-palpite {
-    font-size: 1.2em;
+    font-size: 1.0em;
     margin-bottom: 10px;
     color: #333;
     text-align: left; /* Alinha a frase à direita */
@@ -387,4 +405,7 @@ select {
     font-size: 1em;
     line-height: 1.6;
     margin-bottom: 20px;
+    text-align: justify;
+    hyphens: auto;
+    word-break: break-word;
 }

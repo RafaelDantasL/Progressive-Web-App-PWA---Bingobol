@@ -4,11 +4,18 @@ const urlsToCache = [
     '/index.html',
     '/styles.css',
     '/script.js',
-    '/resultados.js',
-    '/palpites.js',
+    '/firebase-messaging.js',
     '/manifest.json',
     '/icons/icon-192x192.png',
     '/icons/icon-512x512.png',
+    '/icons/compartilhar.png',
+    '/icons/resultado.png',
+    '/icons/jogar.png',
+    '/icons/palpite.png',
+    '/icons/LotoHack.png',
+    '/icons/favicon.png',
+    '/icons/favicon.ico',
+    '/icons/favicon.svg',
     // Adicione aqui outros recursos que você deseja cachear
 ];
 

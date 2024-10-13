@@ -258,7 +258,7 @@ document.addEventListener('DOMContentLoaded', function () {
         if (navigator.share) {
             navigator.share({
                 title: document.title,
-                text: 'Confira esta página incrível de resultados e palpites de loteria!',
+                text: 'Aumente suas chances de ganhar no Jogo do Bicho com os melhores palpites e estatísticas certeiras! Confira agora os resultados mais recentes e receba dicas valiosas para fazer sua próxima aposta vencedora!',
                 url: window.location.href
             }).then(() => {
                 console.log('Compartilhamento bem-sucedido');
@@ -334,7 +334,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
             // Cria e adiciona a frase personalizada
             const fraseP = document.createElement('p');
-            fraseP.textContent = `Jogue M/MC/C/D do 1º ao 10º na loteria ${nome}.`;
+            fraseP.textContent = `Jogue M/MC/C/D do 1º ao 5º ou do 1º ao 10º na loteria ${nome}.`;
             fraseP.classList.add('frase-palpite'); // Alinha à direita via CSS
             palpiteConteudoDiv.appendChild(fraseP);
 
@@ -499,7 +499,7 @@ document.addEventListener('DOMContentLoaded', function () {
         if (navigator.share) {
             navigator.share({
                 title: document.title,
-                text: 'Confira esta página incrível de resultados e palpites de loteria!',
+                text: 'Aumente suas chances de ganhar no Jogo do Bicho com os melhores palpites e estatísticas certeiras! Confira agora os resultados mais recentes e receba dicas valiosas para fazer sua próxima aposta vencedora!',
                 url: window.location.href
             }).then(() => {
                 console.log('Compartilhamento bem-sucedido');

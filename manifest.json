@@ -1,9 +1,9 @@
 {
     "name": "Loto Hack v1",
-    "short_name": "LotoHack",
+    "short_name": "Loto Hack",
     "start_url": "/",
     "display": "standalone",
-    "background_color": "#4CAF50",
+    "background_color": "#2b2a2a",
     "theme_color": "#4CAF50",
     "icons": [
         {
@@ -17,5 +17,6 @@
             "type": "image/png"
         }
     ],
+    "gcm_sender_id": "138353732568",
     "description": "Ajuda apostadores do Jogo do Bicho a acertarem suas apostas com base em análises estatísticas e probabilidades."
 }

@@ -5,13 +5,67 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Loto Hack v1</title>
     <link rel="stylesheet" href="styles.css">
-    <!-- Adicionando o Manifesto para PWA -->
+    
+    <!-- Manifesto para PWA -->
     <link rel="manifest" href="manifest.json">
+    
+    <!-- Favicon para Navegadores -->
+    <link rel="icon" href="icons/favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="icons/favicon.ico" type="image/x-icon">
+    
+    <!-- Favicon em Formato PNG -->
+    <link rel="icon" href="icons/favicon.png" type="image/png">
+    
+    <!-- Favicon em Formato SVG -->
+    <link rel="icon" href="icons/favicon.svg" type="image/svg+xml">
+    
+    <!-- Meta Tags Básicas de SEO -->
+    <meta name="description" content="Loto Hack v1 ajuda apostadores do Jogo do Bicho a acertarem nas suas apostas e ganhar dinheiro! Analisa resultados e gera palpites baseados em estatísticas e probabilidades de acerto.">
+    <meta name="keywords" content="Jogo do Bicho, apostas, palpites, estatísticas, probabilidade, ganhar dinheiro, resultados de loteria">
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="Loto Hack v1">
+    <meta property="og:description" content="Ajudamos apostadores do Jogo do Bicho a acertarem suas apostas com análises estatísticas e probabilidades de acerto.">
+    <meta property="og:url" content="https://app.acertosonline.com/">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://app.acertosonline.com/icons/Loto-Hack.png">
+    <meta property="og:site_name" content="Loto Hack v1">
+    
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Loto Hack v1">
+    <meta name="twitter:description" content="Ajudamos apostadores do Jogo do Bicho a acertarem suas apostas com análises estatísticas e probabilidades de acerto.">
+    <meta name="twitter:image" content="https://app.acertosonline.com/icons/Loto-Hack.png">
+    
+    <!-- Structured Data (JSON-LD) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "Loto Hack v1",
+      "url": "https://app.acertosonline.com/",
+      "description": "Loto Hack v1 ajuda apostadores do Jogo do Bicho a acertarem nas suas apostas e ganhar dinheiro! Analisa resultados e gera palpites baseados em estatísticas e probabilidades de acerto.",
+      "publisher": {
+        "@type": "Organization",
+        "name": "Loto Hack",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://app.acertosonline.com/icons/logo.png",
+          "width": 600,
+          "height": 60
+        }
+      }
+    }
+    </script>
 </head>
 <body>
     <header>
         <div class="header-container">
+        <!-- Agrupando o ícone e o título para alinhá-los juntos -->
+        <div class="logo-title">
+            <img src="icons/LotoHack.png" alt="Loto Hack Logo" class="logo-icon">
             <h1>Loto Hack v1</h1>
+        </div>
             <button id="hamburgerMenu" class="hamburger" aria-label="Menu">
                 &#9776; <!-- Ícone de hambúrguer -->
             </button>
@@ -153,5 +207,9 @@
     <script src="resultados.js"></script>
     <script src="palpites.js"></script>
     <script src="script.js"></script>
+
+    <!-- Firebase Messaging separado em arquivo externo -->
+    <script type="module" src="firebase-messaging.js"></script>
+
     </body>
 </html>
